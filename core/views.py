@@ -18,9 +18,9 @@ class IndexView(FormView):
 
     def form_valid(self, form, *args, **kwargs):
         form.send_mail()
-        mesages.success(self.request, 'Email enviado com sucesso')
+        messages.success(self.request, 'Email enviado com sucesso')
         return super(IndexView, self).form_valid(form, *args, **kwargs)
 
-    def form_invalid(self, *args, **kwargs):
-        mesages.error(self.request, 'Erro ao enviar e-mail')
-        return super(IndexView, self).form_invalid(form, *args, **kwargs)        
+    def form_invalid(self, form, *args, **kwargs):
+        messages.error(self.request, 'Erro ao enviar e-mail')
+        return super(IndexView, self).form_invalid(form, *args, **kwargs)      
