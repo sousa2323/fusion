@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,9 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xk^rogujqr27kywuyo@q0#oi&m@30ij3vjx3=q1(vruzs(!4#$'
+#SECRET_KEY = 'xk^rogujqr27kywuyo@q0#oi&m@30ij3vjx3=q1(vruzs(!4#$'
+
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -74,11 +79,16 @@ WSGI_APPLICATION = 'fusion.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
+
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+"""
+DATABASES = {
+    'default': dj_database_url.config()
 }
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
@@ -128,7 +138,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #E-mail teste console
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 """
 # Email produção
@@ -140,3 +150,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = 'fusion'
 DEFAULT_FROM_EMAIL = 'contato@fusion.com.br
 """
+
+LOGOUT_REDIRECT_URL = "index"

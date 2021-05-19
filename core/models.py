@@ -56,6 +56,7 @@ class Funcionario(Base):
     facebook = models.CharField('Facebook', max_length=100, default='#')
     twitter = models.CharField('Twitter', max_length=100, default='#')
     instagram = models.CharField('Instagram', max_length=100, default='#')
+    linkedin = models.CharField('Linkedin', max_length=100, default='#')
 
     class Meta:
         verbose_name = 'Funcionário'
